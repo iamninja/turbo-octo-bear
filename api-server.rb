@@ -4,6 +4,7 @@ require 'json'
 require 'rufus/scheduler'
 
 require './scripts/crawl-vodafone-gr'
+require './scripts/crawl-skroutz'
 
 # Scheduling tasks
 scheduler = Rufus::Scheduler.new
@@ -11,9 +12,16 @@ scheduler = Rufus::Scheduler.new
 scheduler.every '10m' do
 	fetch_vodafone_data
 end
+scheduler.every '30m' do
+	fetch_skroutz_data
+end
 
-	# Set options
-	set :port, 4567
+# Initialize data
+# fetch_skroutz_data
+# fetch_vodafone_data
+
+# Set options
+set :port, 4567
 set :enviroment, :production
 
 get '/' do
@@ -30,4 +38,11 @@ get '/api/vodafone/:username' do
 		puts "Not known user"
 		{:error => "Not know user: #{params[:username]}"}.to_json
 	end
+end
+
+get '/api/skroutz' do
+	responseProducts = Hash.new
+	file = File.read("./#{DATA_SKROUTZ_DIR}/products.json")
+	responseProducts = JSON.parse(file)
+	responseProducts.to_json
 end
