@@ -3,7 +3,7 @@ require 'sinatra'
 require 'json'
 require 'rufus/scheduler'
 
-require './crawl-vodafone-gr'
+require './scripts/crawl-vodafone-gr'
 
 # Scheduling tasks
 scheduler = Rufus::Scheduler.new
@@ -22,8 +22,8 @@ end
 
 get '/api/vodafone/:username' do
 	responseBalance = Hash.new
-	if File.exists?("./#{DATA_DIR}/#{params[:username]}.json")
-		file = File.read("./#{DATA_DIR}/#{USERNAME}.json")
+	if File.exists?("./#{DATA_VODAFONE_DIR}/#{params[:username]}.json")
+		file = File.read("./#{DATA_VODAFONE_DIR}/#{USERNAME}.json")
 		responseBalance = JSON.parse(file)
 		responseBalance.to_json
 	else

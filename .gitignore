@@ -1,4 +1,4 @@
 Gemfile.lock
 .ruby-gemset
-credentials.rb
+scripts/credentials.rb
 data/
