@@ -8,3 +8,5 @@ gem 'json'
 # Crawling gems
 gem 'nokogiri'
 gem 'mechanize'
+
+gem 'rufus-scheduler'

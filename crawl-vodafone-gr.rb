@@ -6,6 +6,8 @@ require "./credentials"
 
 LOGIN_URL = "https://www.vodafone.gr/portal/client/idm/loginForm.action?null"
 PROFILE_URL = "https://www.vodafone.gr/portal/client/idm/loadPrepayUserProfile.action?scrollanchor=0"
+DATA_DIR = "data/vodafone"
+FileUtils.mkdir_p(DATA_DIR) unless File.exists?(DATA_DIR)
 
 # USERNAME = ""
 # PASSWORD = ""
@@ -55,5 +57,7 @@ def fetch_vodafone_data
 		responseData = hashedData.to_json
 		puts responseData
 	end
-	responseData
+	File.open("./#{DATA_DIR}/#{USERNAME}.json", 'w') do |file|
+		file.puts responseData
+	end
 end
