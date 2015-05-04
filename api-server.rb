@@ -2,6 +2,8 @@ require 'rubygems'
 require 'sinatra'
 require 'json'
 
+require './crawl-vodafone-gr'
+
 
 set :port, 4567
 set :enviroment, :production
@@ -11,7 +13,9 @@ get '/' do
 end
 
 get '/api/vodafone/:name' do
-	response = Hash.new
-	response[:Hello] = 'world!!'
-	response.to_json
+	if params[:name] == "vagios"
+		fetch_vodafone_data
+	else
+		puts "Not known user"
+	end
 end

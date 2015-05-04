@@ -4,3 +4,7 @@ source 'https://rubygems.org'
 gem 'sinatra'
 gem 'thin'
 gem 'json'
+
+# Crawling gems
+gem 'nokogiri'
+gem 'mechanize'
