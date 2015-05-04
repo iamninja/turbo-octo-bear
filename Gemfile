@@ -2,7 +2,8 @@ source 'https://rubygems.org'
 
 # Sinatra
 gem 'sinatra'
-gem 'thin'
+# gem 'thin'
+gem 'unicorn'
 gem 'json'
 
 # Crawling gems
